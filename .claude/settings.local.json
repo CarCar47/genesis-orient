@@ -6,7 +6,10 @@
       "Bash(start debug.html)",
       "Bash(start test.html)",
       "Bash(git remote set-url:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(cp:*)"
     ],
     "deny": [],
     "ask": []
