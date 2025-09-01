@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Genesis Orientation</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="screen active">
+        <div class="loading-container">
+            <div class="spinner"></div>
+            <h2>Loading Orientation...</h2>
+            <p>Test version - should switch in 2 seconds</p>
+        </div>
+    </div>
+
+    <!-- Start Screen -->
+    <div id="startScreen" class="screen">
+        <div class="container">
+            <header class="school-header">
+                <h1>Genesis Vocational Institute</h1>
+                <h2>Student Orientation</h2>
+            </header>
+            
+            <div class="start-content">
+                <div class="welcome-card">
+                    <h3>Welcome to Your Orientation</h3>
+                    <p>Complete this interactive orientation to learn about our school policies and procedures.</p>
+                    
+                    <form id="startForm" class="start-form">
+                        <div class="form-group">
+                            <label for="studentName">Full Name *</label>
+                            <input type="text" id="studentName" name="studentName" required 
+                                   placeholder="Enter your full name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="programSelect">Select Your Program *</label>
+                            <select id="programSelect" name="programSelect" required>
+                                <option value="">Choose a program...</option>
+                                <option value="Home Health Aide">Home Health Aide (75 Clock Hours, Diploma)</option>
+                                <option value="Nursing Assistant">Nursing Assistant (120 Clock Hours, Diploma)</option>
+                                <option value="Phlebotomy Technician">Phlebotomy Technician (165 Clock Hours, Diploma)</option>
+                                <option value="Electrocardiograph Technician">Electrocardiograph Technician (165 Clock Hours, Diploma)</option>
+                                <option value="Patient Care Technician">Patient Care Technician (600 Clock Hours, Diploma)</option>
+                                <option value="Medical Assistant">Medical Assistant (936 Clock Hours, Diploma)</option>
+                                <option value="Medical Billing and Coding">Medical Billing and Coding (1000 Clock Hours, Diploma)</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Start Orientation</button>
+                    </form>
+                </div>
+            </div>
+            
+            <footer class="school-info">
+                <div class="school-details">
+                    <h4>Genesis Vocational Institute</h4>
+                    <p>12851 SW 42nd. Street 2nd Floor #131, Miami Florida 33175</p>
+                    <p>Ph: 305-223-05062 | Fax: 305-223-0509</p>
+                    <p>Email: info@gvi.edu | Web: <a href="https://www.gvi.edu/" target="_blank">www.gvi.edu</a></p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        console.log('Test script loaded');
+        
+        setTimeout(() => {
+            console.log('Switching screens...');
+            
+            const loading = document.getElementById('loadingScreen');
+            const start = document.getElementById('startScreen');
+            
+            console.log('Elements:', { loading: !!loading, start: !!start });
+            
+            if (loading && start) {
+                loading.classList.remove('active');
+                start.classList.add('active');
+                console.log('Screen transition completed');
+            } else {
+                console.error('Could not find elements!');
+            }
+        }, 2000);
+    </script>
+</body>
+</html>
