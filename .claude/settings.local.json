@@ -4,7 +4,9 @@
       "Bash(start index.html)",
       "Bash(python:*)",
       "Bash(start debug.html)",
-      "Bash(start test.html)"
+      "Bash(start test.html)",
+      "Bash(git remote set-url:*)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []
