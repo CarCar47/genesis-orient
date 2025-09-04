@@ -182,6 +182,46 @@ p {
     color: var(--text-light);
 }
 
+/* Language Selector */
+.language-selector {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: var(--background-light);
+    border-radius: var(--border-radius);
+    border: 2px solid var(--border-light);
+}
+
+.language-btn {
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--border-light);
+    border-radius: var(--border-radius);
+    background-color: white;
+    color: var(--text-dark);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    min-width: 80px;
+}
+
+.language-btn:hover {
+    border-color: var(--secondary-color);
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+.language-btn.active {
+    border-color: var(--secondary-color);
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.language-btn:focus {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 2px;
+}
+
 .start-form {
     display: flex;
     flex-direction: column;

@@ -82,10 +82,21 @@ const QuizEngine = {
             this.score++;
         }
         
-        // Show feedback
-        const feedbackText = isCorrect 
-            ? currentQuestion.question.feedbackCorrect
-            : currentQuestion.question.feedbackIncorrect;
+        // Show feedback - handle bilingual structure
+        let feedbackText;
+        if (typeof currentQuestion.question.feedbackCorrect === 'object') {
+            // Bilingual format - get current language
+            const lang = typeof LanguageManager !== 'undefined' ? 
+                LanguageManager.getCurrentLanguage() : 'en';
+            feedbackText = isCorrect 
+                ? (currentQuestion.question.feedbackCorrect[lang] || currentQuestion.question.feedbackCorrect['en'])
+                : (currentQuestion.question.feedbackIncorrect[lang] || currentQuestion.question.feedbackIncorrect['en']);
+        } else {
+            // Legacy format - direct string
+            feedbackText = isCorrect 
+                ? currentQuestion.question.feedbackCorrect
+                : currentQuestion.question.feedbackIncorrect;
+        }
             
         if (typeof UIManager !== 'undefined') {
             UIManager.showFeedback(isCorrect, feedbackText);

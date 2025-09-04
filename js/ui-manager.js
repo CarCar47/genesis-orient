@@ -83,18 +83,24 @@ const UIManager = {
         const questionEl = document.getElementById('questionText');
         const choicesEl = document.getElementById('choicesContainer');
         
+        // Get localized question data
+        let localizedData = questionData;
+        if (typeof LanguageManager !== 'undefined') {
+            localizedData = LanguageManager.getCurrentQuestionData(questionData);
+        }
+        
         if (descriptionEl) {
-            descriptionEl.textContent = questionData.description;
+            descriptionEl.textContent = localizedData.description;
         }
         
         if (questionEl) {
-            questionEl.textContent = questionData.question.text;
+            questionEl.textContent = localizedData.question.text;
         }
         
         if (choicesEl) {
             choicesEl.innerHTML = '';
             
-            questionData.question.choices.forEach((choice, index) => {
+            localizedData.question.choices.forEach((choice, index) => {
                 const button = document.createElement('button');
                 button.className = 'choice-btn';
                 button.textContent = choice;

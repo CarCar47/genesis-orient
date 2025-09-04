@@ -66,6 +66,14 @@ function initializeApp() {
         
         updateLoadingStatus('Initializing UI components...');
         
+        // Initialize Language Manager first
+        if (typeof LanguageManager !== 'undefined') {
+            LanguageManager.init();
+            updateLoadingStatus('Language Manager initialized...');
+        } else {
+            console.warn('LanguageManager not found');
+        }
+        
         // Initialize UI Manager
         if (typeof UIManager !== 'undefined') {
             UIManager.init();
