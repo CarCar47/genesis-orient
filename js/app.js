@@ -254,4 +254,4 @@ if (typeof window !== 'undefined') {
     };
 }
 
-console.log('Genesis Orientation App loaded successfully');
+console.log('Genesis Orientation App loaded successfully - Cache Break v1.0');
