@@ -106,15 +106,18 @@
                     
                     <div class="question-section">
                         <h4 id="questionText" class="question-text"></h4>
-                        <div id="choicesContainer" class="choices-container"></div>
-                    </div>
-                </div>
-                
-                <div id="feedbackCard" class="feedback-card hidden">
-                    <div class="feedback-content">
-                        <div id="feedbackIcon" class="feedback-icon"></div>
-                        <div id="feedbackText" class="feedback-text"></div>
-                        <button id="continueBtn" class="btn btn-primary">Continue</button>
+                        <div class="question-content">
+                            <div id="choicesContainer" class="choices-container"></div>
+                            <div id="inlineFeedback" class="inline-feedback hidden">
+                                <div class="feedback-display">
+                                    <div id="feedbackIcon" class="feedback-icon"></div>
+                                    <div class="feedback-content">
+                                        <div id="feedbackText" class="feedback-text"></div>
+                                        <button id="continueBtn" class="btn btn-primary">Continue</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -256,7 +259,33 @@
     </div>
 
     <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" onerror="loadJsPDFFallback()"></script>
+    <script>
+        // Fallback jsPDF loader
+        function loadJsPDFFallback() {
+            console.log('Primary CDN failed, trying fallback...');
+            const script = document.createElement('script');
+            script.src = 'https://unpkg.com/jspdf@2.5.1/dist/jspdf.umd.min.js';
+            script.onerror = function() {
+                console.error('All jsPDF CDNs failed to load');
+                window.jsPDFError = true;
+            };
+            document.head.appendChild(script);
+        }
+        
+        // Ensure jsPDF is available globally after loading
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                if (typeof window.jspdf !== 'undefined') {
+                    console.log('jsPDF loaded successfully');
+                } else if (!window.jsPDFError) {
+                    console.log('jsPDF still loading...');
+                } else {
+                    console.error('jsPDF failed to load from all sources');
+                }
+            }, 500);
+        });
+    </script>
     <script src="js/questions.js"></script>
     <script src="js/quiz-engine.js"></script>
     <script src="js/ui-manager.js"></script>

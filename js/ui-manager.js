@@ -127,12 +127,12 @@ const UIManager = {
     
     // Show feedback
     showFeedback(isCorrect, feedbackText) {
-        const feedbackCard = document.getElementById('feedbackCard');
+        const inlineFeedback = document.getElementById('inlineFeedback');
         const feedbackIcon = document.getElementById('feedbackIcon');
         const feedbackTextEl = document.getElementById('feedbackText');
         
-        if (feedbackCard) {
-            feedbackCard.classList.remove('hidden');
+        if (inlineFeedback) {
+            inlineFeedback.classList.remove('hidden');
         }
         
         if (feedbackIcon) {
@@ -157,9 +157,9 @@ const UIManager = {
     
     // Hide feedback
     hideFeedback() {
-        const feedbackCard = document.getElementById('feedbackCard');
-        if (feedbackCard) {
-            feedbackCard.classList.add('hidden');
+        const inlineFeedback = document.getElementById('inlineFeedback');
+        if (inlineFeedback) {
+            inlineFeedback.classList.add('hidden');
         }
     },
     
@@ -190,6 +190,46 @@ const UIManager = {
         
         if (timeSpent) {
             timeSpent.textContent = results.timeFormatted;
+        }
+        
+        // Handle certificate download visibility based on grade
+        const downloadBtn = document.getElementById('downloadCertificate');
+        const resultsActions = document.querySelector('.results-actions');
+        const failingGrades = ['F', 'D', 'C'];
+        const isPassing = !failingGrades.includes(results.grade);
+        
+        if (downloadBtn) {
+            if (isPassing) {
+                downloadBtn.style.display = 'inline-block';
+            } else {
+                downloadBtn.style.display = 'none';
+            }
+        }
+        
+        // Add or update failing message
+        let failingMessage = document.getElementById('failingGradeMessage');
+        if (!isPassing) {
+            if (!failingMessage) {
+                failingMessage = document.createElement('div');
+                failingMessage.id = 'failingGradeMessage';
+                failingMessage.className = 'failing-grade-message';
+                failingMessage.innerHTML = `
+                    <div class="message-content">
+                        <h4>Orientation Not Complete</h4>
+                        <p>A passing grade of B (80%) or higher is required to complete the orientation program. 
+                        Please restart the orientation and review the material carefully to achieve a passing score.</p>
+                    </div>
+                `;
+                // Insert before the actions
+                if (resultsActions) {
+                    resultsActions.parentNode.insertBefore(failingMessage, resultsActions);
+                }
+            }
+        } else {
+            // Remove failing message if it exists and grade is now passing
+            if (failingMessage) {
+                failingMessage.remove();
+            }
         }
         
         // Show results screen

@@ -155,14 +155,30 @@ const QuizEngine = {
     
     // Download certificate
     downloadCertificate() {
-        if (typeof jsPDF === 'undefined') {
+        // Check grade eligibility first
+        const results = this.calculateResults();
+        const failingGrades = ['F', 'D', 'C'];
+        
+        if (failingGrades.includes(results.grade)) {
+            alert('Certificate not available. A passing grade of B (80%) or higher is required. Please restart the orientation to try again.');
+            return;
+        }
+        
+        // Check if jsPDF is loaded
+        if (typeof window.jspdf === 'undefined') {
             console.error('jsPDF library not loaded');
-            alert('PDF generation not available. Please check your internet connection.');
+            if (window.jsPDFError) {
+                alert('PDF generation is currently unavailable due to network issues. Please check your internet connection and try again.');
+            } else {
+                alert('PDF library is still loading. Please wait a moment and try again.');
+            }
             return;
         }
         
         try {
             const results = this.calculateResults();
+            console.log('Generating certificate for:', this.studentName, results);
+            
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
             
@@ -173,45 +189,80 @@ const QuizEngine = {
                 day: 'numeric'
             });
             
-            // Header
-            doc.setFontSize(20);
-            doc.setFont('helvetica', 'bold');
-            doc.text('Certificate of Completion', 105, 40, { align: 'center' });
+            // Add border
+            doc.setLineWidth(3);
+            doc.setDrawColor(44, 62, 80); // Primary color
+            doc.rect(10, 10, 190, 277);
             
-            doc.setFontSize(16);
-            doc.text('Student Orientation', 105, 55, { align: 'center' });
+            // Header with school logo space
+            doc.setFontSize(24);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(44, 62, 80);
+            doc.text('CERTIFICATE OF COMPLETION', 105, 40, { align: 'center' });
+            
+            doc.setFontSize(18);
+            doc.setTextColor(52, 152, 219);
+            doc.text('Student Orientation Program', 105, 55, { align: 'center' });
+            
+            // Decorative line
+            doc.setLineWidth(1);
+            doc.setDrawColor(52, 152, 219);
+            doc.line(40, 65, 170, 65);
             
             // Body
-            doc.setFontSize(12);
+            doc.setFontSize(14);
             doc.setFont('helvetica', 'normal');
-            doc.text('This certifies that', 105, 80, { align: 'center' });
+            doc.setTextColor(0, 0, 0);
+            doc.text('This is to certify that', 105, 85, { align: 'center' });
             
-            doc.setFontSize(16);
+            doc.setFontSize(20);
             doc.setFont('helvetica', 'bold');
-            doc.text(this.studentName, 105, 100, { align: 'center' });
+            doc.setTextColor(44, 62, 80);
+            doc.text(this.studentName.toUpperCase(), 105, 105, { align: 'center' });
+            
+            // Underline for name
+            doc.setLineWidth(0.5);
+            doc.setDrawColor(52, 152, 219);
+            doc.line(30, 110, 180, 110);
             
             doc.setFontSize(12);
             doc.setFont('helvetica', 'normal');
-            doc.text(`has successfully completed the orientation for the ${this.selectedProgram} program`, 105, 120, { align: 'center' });
-            doc.text(`at Genesis Vocational Institute on ${completionDate}.`, 105, 135, { align: 'center' });
+            doc.setTextColor(0, 0, 0);
+            doc.text(`has successfully completed the orientation requirements for the`, 105, 130, { align: 'center' });
             
-            // Score
-            doc.text(`Score: ${results.percentage}% (${results.grade})`, 105, 160, { align: 'center' });
-            doc.text(`Time: ${results.timeFormatted}`, 105, 175, { align: 'center' });
+            doc.setFontSize(14);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(44, 62, 80);
+            doc.text(`${this.selectedProgram} Program`, 105, 145, { align: 'center' });
+            
+            doc.setFontSize(12);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor(0, 0, 0);
+            doc.text(`at Genesis Vocational Institute on ${completionDate}`, 105, 160, { align: 'center' });
+            
+            // Performance details
+            doc.setFontSize(11);
+            doc.text(`Final Score: ${results.percentage}% (Grade: ${results.grade})`, 105, 185, { align: 'center' });
+            doc.text(`Completion Time: ${results.timeFormatted}`, 105, 200, { align: 'center' });
+            doc.text(`Questions Answered Correctly: ${results.correct} out of ${results.total}`, 105, 215, { align: 'center' });
             
             // Footer
             doc.setFontSize(10);
-            doc.text('Genesis Vocational Institute', 105, 220, { align: 'center' });
-            doc.text('12851 SW 42nd. Street 2nd Floor #131, Miami Florida 33175', 105, 235, { align: 'center' });
-            doc.text('Ph: 305-223-05062 | Email: info@gvi.edu | Web: www.gvi.edu', 105, 250, { align: 'center' });
+            doc.setTextColor(100, 100, 100);
+            doc.text('Genesis Vocational Institute', 105, 245, { align: 'center' });
+            doc.text('12851 SW 42nd Street, 2nd Floor #131, Miami, Florida 33175', 105, 255, { align: 'center' });
+            doc.text('Phone: (305) 223-0506 | Email: info@gvi.edu | Website: www.gvi.edu', 105, 265, { align: 'center' });
             
             // Generate filename
-            const filename = `orientation-completion-${this.studentName.replace(/\s+/g, '-').toLowerCase()}-${new Date().toISOString().split('T')[0]}.pdf`;
+            const timestamp = new Date().toISOString().split('T')[0];
+            const safeName = this.studentName.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase();
+            const filename = `genesis-orientation-certificate-${safeName}-${timestamp}.pdf`;
             
             // Download
             doc.save(filename);
             
-            console.log('Certificate downloaded:', filename);
+            console.log('Certificate downloaded successfully:', filename);
+            alert('Certificate downloaded successfully!');
             
         } catch (error) {
             console.error('Error generating certificate:', error);

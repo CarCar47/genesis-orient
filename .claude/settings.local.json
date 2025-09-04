@@ -40,7 +40,12 @@
       "Read(/C:\\Users\\c_clo\\OneDrive\\Personal\\Coding\\Project - Genesis Orientation/**)",
       "Read(/C:\\Users\\c_clo\\OneDrive\\Personal\\Coding\\Project - Genesis Orientation\\css/**)",
       "Read(/C:\\Users\\c_clo\\OneDrive\\Personal\\Coding\\Project - Genesis Orientation\\css/**)",
-      "Read(/C:\\Users\\c_clo\\OneDrive\\Personal\\Coding\\Project - Genesis Orientation\\css/**)"
+      "Read(/C:\\Users\\c_clo\\OneDrive\\Personal\\Coding\\Project - Genesis Orientation\\css/**)",
+      "WebFetch(domain:github.com)",
+      "Read(/C:\\Users\\c_clo\\OneDrive\\Personal\\Coding\\Project - Genesis Orientation\\css/**)",
+      "Read(/C:\\Users\\c_clo\\OneDrive\\Personal\\Coding\\Project - Genesis Orientation/**)",
+      "Read(/C:\\Users\\c_clo\\OneDrive\\Personal\\Coding\\Project - Genesis Orientation/**)",
+      "Read(/C:\\Users\\c_clo\\OneDrive\\Personal\\Coding\\Project - Genesis Orientation/**)"
     ],
     "deny": [],
     "ask": []
