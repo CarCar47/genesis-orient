@@ -74,9 +74,13 @@ p {
 /* Layout */
 .screen {
     display: none;
-    min-height: 100vh;
-    padding: 1rem;
+    height: 100vh;
+    padding: 0;
     overflow-y: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 
 .screen.active {
@@ -86,7 +90,11 @@ p {
 .container {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 1rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 /* Loading Screen */
@@ -96,6 +104,14 @@ p {
     justify-content: center;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
+    padding: 1rem;
+}
+
+#loadingScreen .loading-container {
+    /* Override container styles for loading screen */
+    min-height: auto;
+    display: block;
+    justify-content: initial;
 }
 
 .loading-container {
