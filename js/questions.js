@@ -9,7 +9,7 @@ const questions = [
             text: "What is the main focus of Genesis Vocational Institute's mission?",
             choices: [
                 "Providing lifelong learning in healthcare professions",
-                "Offering advanced degrees in business",
+                "Offering advanced degrees in business", 
                 "Focusing on arts and humanities",
                 "Teaching only theoretical knowledge"
             ],
@@ -26,7 +26,7 @@ const questions = [
             choices: [
                 "To outline programs, policies, and expectations",
                 "To provide recipes for healthy meals",
-                "To list local entertainment options",
+                "To list local entertainment options", 
                 "To sell school merchandise"
             ],
             correctIndex: 0,
@@ -47,7 +47,7 @@ const questions = [
             ],
             correctIndex: 0,
             feedbackCorrect: "Correct! It promotes equality.",
-            feedbackIncorrected: "Incorrect. It focuses on equal opportunities."
+            feedbackIncorrect: "Incorrect. It focuses on equal opportunities."
         }
     },
     {
@@ -74,7 +74,7 @@ const questions = [
             choices: [
                 "Regular attendance and make-up procedures",
                 "Attendance only on Mondays",
-                "No attendance tracking",
+                "No attendance tracking", 
                 "Attendance via email only"
             ],
             correctIndex: 0,
