@@ -26,7 +26,11 @@
       "Read(/C:\\Users\\c_clo\\OneDrive\\Personal\\Coding\\Project - Genesis Orientation/**)",
       "Read(/C:\\Users\\c_clo\\OneDrive\\Personal\\Coding\\Project - Genesis Orientation\\js/**)",
       "Read(/C:\\Users\\c_clo\\OneDrive\\Personal\\Coding\\Project - Genesis Orientation/**)",
-      "Read(/C:\\Users\\c_clo\\OneDrive\\Personal\\Coding\\Project - Genesis Orientation\\js/**)"
+      "Read(/C:\\Users\\c_clo\\OneDrive\\Personal\\Coding\\Project - Genesis Orientation\\js/**)",
+      "Read(/C:\\Users\\c_clo\\OneDrive\\Personal\\Coding\\Project - Genesis Orientation\\js/**)",
+      "Read(/C:\\Users\\c_clo\\OneDrive\\Personal\\Coding\\Project - Genesis Orientation\\js/**)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(git config:*)"
     ],
     "deny": [],
     "ask": []
