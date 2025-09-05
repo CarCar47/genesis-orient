@@ -46,7 +46,8 @@
       "Read(/C:\\Users\\c_clo\\OneDrive\\Personal\\Coding\\Project - Genesis Orientation/**)",
       "Read(/C:\\Users\\c_clo\\OneDrive\\Personal\\Coding\\Project - Genesis Orientation/**)",
       "Read(/C:\\Users\\c_clo\\OneDrive\\Personal\\Coding\\Project - Genesis Orientation/**)",
-      "Bash(dir:*)"
+      "Bash(dir:*)",
+      "WebFetch(domain:api.github.com)"
     ],
     "deny": [],
     "ask": []
