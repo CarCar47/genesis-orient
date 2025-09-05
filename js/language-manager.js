@@ -239,3 +239,15 @@ if (typeof window !== 'undefined') {
 }
 
 console.log('Language Manager loaded successfully - v2.0');
+
+// VISUAL TEST - Add red border to language selector if this script runs
+document.addEventListener('DOMContentLoaded', function() {
+    const selector = document.querySelector('.language-selector');
+    if (selector) {
+        selector.style.border = '5px solid red';
+        selector.style.backgroundColor = 'yellow';
+        console.log('VISUAL TEST: Language selector found and styled');
+    } else {
+        console.log('VISUAL TEST: Language selector NOT found');
+    }
+});
