@@ -203,4 +203,4 @@ if (typeof module !== 'undefined' && module.exports) {
     module.exports = translations;
 }
 
-console.log('Translations loaded successfully');
+console.log('Translations loaded successfully - v2.0');

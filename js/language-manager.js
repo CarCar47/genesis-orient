@@ -228,4 +228,4 @@ if (typeof window !== 'undefined') {
     window.LanguageManager = LanguageManager;
 }
 
-console.log('Language Manager loaded successfully');
+console.log('Language Manager loaded successfully - v2.0');
