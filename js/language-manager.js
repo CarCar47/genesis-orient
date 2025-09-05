@@ -28,12 +28,22 @@ const LanguageManager = {
         const englishBtn = document.getElementById('languageEnglish');
         const spanishBtn = document.getElementById('languageSpanish');
         
+        console.log('DEBUG: Looking for language buttons');
+        console.log('DEBUG: English button found:', !!englishBtn);
+        console.log('DEBUG: Spanish button found:', !!spanishBtn);
+        
         if (englishBtn) {
             englishBtn.addEventListener('click', () => this.setLanguage('en'));
+            console.log('DEBUG: English button click listener added');
+        } else {
+            console.error('ERROR: English language button not found!');
         }
         
         if (spanishBtn) {
             spanishBtn.addEventListener('click', () => this.setLanguage('es'));
+            console.log('DEBUG: Spanish button click listener added');
+        } else {
+            console.error('ERROR: Spanish language button not found!');
         }
         
         // Update button states
